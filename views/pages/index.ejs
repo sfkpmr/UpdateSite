@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!--Copyright(c) 2021 by Chen Hui Jing(https://codepen.io/huijing/pen/WKmmOG)
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+        documentation files(the "Software"), to deal in the Software without restriction, including without limitation the
+        rights to use, copy, modify, merge, publish, distribute, sublicense, and / or sell copies of the Software, and to
+        permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+        Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+        WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS
+        OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+        OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.-->
+
+    <title>All the software versions you need to know in one place!</title>
+    <meta name="description" content="All the software versions you need to know in one place!" />
+    <link rel="canonical" href="https://www.wallen.co" />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Play&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <h1>
+        What's the latest version?
+    </h1>
+
+
+    <main>
+        <div class="table-wrapper" tabindex="0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Release Date</th>
+                        <th>Direct Link</th>
+                        <th>Download</th>
+                        <th>Install Guide</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i < softwareArray.length; i++ ) { %>
+                        <tr>
+                            <td class="text">
+                                <%= softwareArray[i].name %>
+                            </td>
+                            <td class="numeric">
+                                <%= softwareArray[i].releaseVersion %>
+                            </td>
+                            <td class="numeric">
+                                <% if (softwareArray[i].releaseDate!=="-" ) { %>
+                                    <%= softwareArray[i].releaseDate %>
+                                        <% } %>
+                            </td>
+                            <td class="text"><a href="<%= softwareArray[i].name.replace(/ /g, '') %>.html"
+                                    title="Direct link to <%= softwareArray[i].name %> version.">Direct Link</a>
+                            </td>
+                            <td class="text"><a href="<%= softwareArray[i].releaseURL %>"
+                                    title="Download link for <%= softwareArray[i].name %>.">Download</a></td>
+                            <td class="text">
+                                <% if (softwareArray[i].guideURL!=="guideurl" ) { %>
+                                    <a href="<%= softwareArray[i].guideURL %>"
+                                        title="Link to installation guide for <%= softwareArray[i].name %>.">Install
+                                        guide</a>
+                                    <% } %>
+                            </td>
+                            <td class="text">
+                                <%= softwareArray[i].description %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+
+</html>
