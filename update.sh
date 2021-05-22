@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#check version nr is higher than old version
-
 user=sfkpmr
 token=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
 publicPath=/srv/public
@@ -18,7 +16,6 @@ then
 	echo "API OK";
 	#Discarding releases with alpha or rc in the name
 	releaseName=$(echo "$repo" | grep -o -P '(?<=name": ").*(?=",)' | grep -E '[0-9]{1,3}'\\.'[0-9]{1,3}'\\.'[0-9]{1,3}' | grep -i -v -E 'alpha|rc|dev|candidate|beta' | sed -n '1p')
-	#echo "$releaseName"
 
 	counter=$(echo "$releaseName" | grep -o '\.' | wc -l)
 	if [ "$counter" == 2 ]
@@ -27,9 +24,6 @@ then
 	else
 		version=$(echo "$releaseName" | grep -Eo '[0-9]{1,4}'\\.'[0-9]{1,3}'\\.'[0-9]{1,3}'\\.'[[:alnum:]]{1,6}')
 	fi
-
-	#version=$(echo "$releaseName" | grep -Eo '[0-9]{1,3}'\\.'[0-9]{1,3}'\\.'[0-9]{1,3}')
-	#echo "$version"
 
 	tag=$(curl -u ${user}:${token} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${1}/releases/tags/${releaseName})
 	releaseURL=https://github.com/${1}/releases/tag/${releaseName}
@@ -44,11 +38,8 @@ then
 	fi
 
 		validateVersion ${version} "${2}" ${releaseDate} ${releaseURL}
-		#writeFile ${version} "${2}"
-		#updateList "${2}" ${version} ${releaseDate} ${releaseURL}
 
 else
-	#echo "$repo";
 	echo "$repo" >> $logfile
 fi
 
@@ -90,9 +81,7 @@ then
 
 	echo "Version " ${version} "namn " "${2}" ${releaseDate} ${releaseURL}
 	validateVersion ${version} "${2}" ${releaseDate} ${releaseURL}
-	#updateList "${2}" ${version} ${releaseDate} ${releaseURL}
 else
-	#echo "$repo";
 	echo "$repo" >> $logfile
 fi
 
@@ -117,7 +106,7 @@ else
         elif [ "$randValue" == 2 ]; then
 		boxColour=green-box
         else
-            	boxColour=red-box    
+            	boxColour=red-box
         fi
 
 	#Add new item to JSON
@@ -142,23 +131,21 @@ cat $jsonfile |
 
 checkMariaDb () {
 
-#API error check
-
 mariaAPI=$(curl https://downloads.mariadb.org/rest-api/mariadb/10.5/)
 
-releaseVersion=$(echo "$mariaAPI" | jq '.releases | .[] | .release_id' | sed -n '1p' | grep -E -o '[0-9]{1,3}'\\.'[0-9]{1,3}'\\.'[0-9]{1,3}')
-releaseDate=$(echo "$mariaAPI" | jq '.releases | .[] | .date_of_release' | sed -n '1p' | grep -E -o '[0-9]{1,2}'-'[0-9]{1,2}'-'[0-9]{1,2}')
+if [ -z "$mariaAPI" ]
+then
+	echo "Empty Maria API return." >> $logfile
+else
+	releaseVersion=$(echo "$mariaAPI" | jq '.releases | .[] | .release_id' | sed -n '1p' | grep -E -o '[0-9]{1,3}'\\.'[0-9]{1,3}'\\.'[0-9]{1,3}')
+	releaseDate=$(echo "$mariaAPI" | jq '.releases | .[] | .date_of_release' | sed -n '1p' | grep -E -o '[0-9]{1,2}'-'[0-9]{1,2}'-'[0-9]{1,2}')
 
-#tr to keep output on one line
-tempVersionName=$(echo "$releaseVersion" | grep -o [0-9] | tr -d '\n')
-releaseURL=https://mariadb.com/kb/en/mariadb-$tempVersionName-release-notes/
+	#tr to keep output on one line
+	tempVersionName=$(echo "$releaseVersion" | grep -o [0-9] | tr -d '\n')
+	releaseURL=https://mariadb.com/kb/en/mariadb-$tempVersionName-release-notes/
 
-#echo "$releaseVersion"
-#echo "$releaseDate"
-#echo "$releaseURL"
-
-validateVersion ${releaseVersion} MariaDB ${releaseDate} ${releaseURL}
-#updateList MariaDB ${releaseVersion} ${releaseDate} ${releaseURL}
+	validateVersion ${releaseVersion} MariaDB ${releaseDate} ${releaseURL}
+fi
 
 }
 
