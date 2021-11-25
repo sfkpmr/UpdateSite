@@ -6,6 +6,8 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 // Initialise Express
 var app = express();
+// Remove x-powered-by 
+app.disable('x-powered-by');
 // Render static files
 app.use(express.static('public'));
 // Set the view engine to ejs
