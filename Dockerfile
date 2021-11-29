@@ -23,4 +23,8 @@ COPY . .
 
 # replace this with your application's default port
 EXPOSE 8080
+
+# Run image with nobody instead of root 
+USER nobody
+
 CMD [ "node", "server.js" ]
