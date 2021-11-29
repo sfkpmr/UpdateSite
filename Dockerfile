@@ -13,6 +13,9 @@ COPY package*.json ./
 
 # RUN npm install
 # If you are building your code for production
+# RUN npm ci --only=production
+# npm ci installs the same versions defined in the lock file and doesn't try to update them as npm install does. 
+# The --only=production flag skips installation of devDependencies, which we don't need in production.
 RUN npm ci --only=production
 
 # Bundle app source
