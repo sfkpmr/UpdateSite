@@ -1,4 +1,5 @@
-  # Maintain dependencies for npm
+# Maintain dependencies for npm
+updates:  
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
