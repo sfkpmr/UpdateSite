@@ -6,10 +6,12 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 // Initialise Express
 var app = express();
-// Remove x-powered-by 
+// Remove x-powered-by Express
 app.disable('x-powered-by');
 // Render static files
-app.use(express.static('public'));
+app.use('/static', express.static('static'))
+//app.use(express.static('static'));
+app.use(express.static('software'));
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 // Port website will run on
@@ -65,16 +67,5 @@ app.get('/mobile', async function (req, res) {
 
         res.render('pages/mobile')
 
-});
-
-//Ersätt med API
-app.get('/', function (req, res) {
-    res.render('public/text', {
-    });
-});
-
-app.get('/', function (req, res) {
-    res.render('css/text', {
-    });
 });
 
