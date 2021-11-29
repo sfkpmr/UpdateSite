@@ -21,6 +21,9 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
+# Change default timezone
+RUN ln -s -f /usr/share/zoneinfo/CET /etc/localtime
+
 # replace this with your application's default port
 EXPOSE 8080
 
