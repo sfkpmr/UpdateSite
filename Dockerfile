@@ -24,6 +24,9 @@ COPY . .
 # Change default timezone
 ENV TZ="Europe/Stockholm"
 
+# Set Node to production
+ENV NODE_ENV="production"
+
 # replace this with your application's default port
 EXPOSE 8080
 
