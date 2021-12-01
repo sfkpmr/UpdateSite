@@ -26,7 +26,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <h5>The latest stable versions</h5>
     <div class="periodic-table">
         <% for (var i=0; i < softwareArray.length; i++ ) { %>
-            <div class="periodic-element <%= softwareArray[i].box %>">
+            <div class="periodic-element <%= softwareArray[i].box %>"
+                onclick="location.href='about/<%= softwareArray[i].name %>';">
                 <div class="periodic-element-inner">
                     <div class="title">
                         <%= softwareArray[i].name %>
