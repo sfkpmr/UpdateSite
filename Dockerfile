@@ -22,7 +22,8 @@ RUN npm ci --only=production
 COPY . .
 
 # Change default timezone
-RUN ln -s -f /usr/share/zoneinfo/CET /etc/localtime
+#RUN ln -s -f /usr/share/zoneinfo/CET /etc/localtime
+ENV TZ="Europe/Stockholm"
 
 # replace this with your application's default port
 EXPOSE 8080
