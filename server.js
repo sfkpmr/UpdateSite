@@ -1,4 +1,5 @@
 // Load Node modules
+var compression = require('compression');
 var express = require('express');
 const ejs = require('ejs');
 var fs = require('fs');
@@ -6,6 +7,8 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 // Initialise Express
 var app = express();
+// Use Gzip compression
+app.use(compression());
 // Remove x-powered-by Express
 app.disable('x-powered-by');
 // Render static files
