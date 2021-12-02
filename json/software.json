@@ -446,7 +446,7 @@
         "releaseDate": "-",
         "releaseURL": "https://github.com/apache/tomcat/releases/tag/10.0.6",
         "guideURL": "https://tomcat.apache.org/tomcat-10.0-doc/setup.html",
-        "description": "A \"pure\" Java HTTP server.",
+        "description": "A 'pure' Java HTTP server.",
         "box": "blue-box"
     },
     {
