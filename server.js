@@ -98,7 +98,7 @@ app.get('/api/:name', (req, res) => {
     return res.send(querriedSoftware);
 });
 
-app.get('/api/:name/:version', (req, res) => {
+app.get('/api/:name/version', (req, res) => {
     const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
 
     if (!software.some(e => e.name === req.params.name)) {
