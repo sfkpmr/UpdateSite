@@ -93,6 +93,7 @@ app.get('/api/:name', (req, res) => {
     delete querriedSoftware.guideURL;
     delete querriedSoftware.description;
     delete querriedSoftware.box;
+    delete querriedSoftware.downloadURL;
 
     return res.send(querriedSoftware);
 });
@@ -111,6 +112,7 @@ app.get('/api/:name/:version', (req, res) => {
     delete querriedSoftware.guideURL;
     delete querriedSoftware.description;
     delete querriedSoftware.box;
+    delete querriedSoftware.downloadURL;
 
-    return res.send(querriedSoftware);
+    return res.send(Object.values(querriedSoftware));
 });
