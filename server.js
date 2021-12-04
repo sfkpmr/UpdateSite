@@ -85,34 +85,40 @@ app.get('/api', (req, res) => {
 app.get('/api/:name', (req, res) => {
     const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
 
-    if (!software.some(e => e.name === req.params.name)) {
-        return res.send("No such software! Names are case sensitive, use spelling from https://www.wallen.co");
+    try {
+        const querriedSoftware = software.find(e => e.name === req.params.name);
+
+        delete querriedSoftware.guideURL;
+        delete querriedSoftware.description;
+        delete querriedSoftware.box;
+        delete querriedSoftware.downloadURL;
+
+        return res.send(querriedSoftware);
+    } catch {
+        res.status(404)
+        res.send({ error: "No such software! More information: https://wallen.co/static/api.html" })
     }
 
-    const querriedSoftware = software.find(e => e.name === req.params.name);
-    delete querriedSoftware.guideURL;
-    delete querriedSoftware.description;
-    delete querriedSoftware.box;
-    delete querriedSoftware.downloadURL;
-
-    return res.send(querriedSoftware);
 });
 
 app.get('/api/:name/version', (req, res) => {
     const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
 
-    if (!software.some(e => e.name === req.params.name)) {
-        return res.send("No such software! Names are case sensitive, use spelling from https://www.wallen.co");
+    try {
+        const querriedSoftware = software.find(e => e.name === req.params.name);
+
+        delete querriedSoftware.name;
+        delete querriedSoftware.releaseDate;
+        delete querriedSoftware.releaseURL;
+        delete querriedSoftware.guideURL;
+        delete querriedSoftware.description;
+        delete querriedSoftware.box;
+        delete querriedSoftware.downloadURL;
+
+        return res.send(Object.values(querriedSoftware));
+    } catch {
+        res.status(404)
+        res.send({ error: "No such software! More information: https://wallen.co/static/api.html" })
     }
 
-    const querriedSoftware = software.find(e => e.name === req.params.name);
-    delete querriedSoftware.name;
-    delete querriedSoftware.releaseDate;
-    delete querriedSoftware.releaseURL;
-    delete querriedSoftware.guideURL;
-    delete querriedSoftware.description;
-    delete querriedSoftware.box;
-    delete querriedSoftware.downloadURL;
-
-    return res.send(Object.values(querriedSoftware));
 });
