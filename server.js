@@ -6,6 +6,7 @@ var fs = require('fs');
 const util = require('util');
 const { url } = require('inspector');
 const readFile = util.promisify(fs.readFile);
+const path = require('path');
 // Initialise Express
 var app = express();
 // Use Gzip compression
@@ -75,6 +76,11 @@ app.get('/mobile', async function (req, res) {
 });
 
 app.get('/api', (req, res) => {
+
+    return res.sendFile(path.join(__dirname, '/api.html'));
+});
+
+app.get('/api/all', (req, res) => {
     const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
 
     const filteredSoftware = software.map(({ guideURL, description, box, ...keepAttrs }) => keepAttrs)
