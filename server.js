@@ -102,7 +102,7 @@ app.get('/api/:name', (req, res) => {
         return res.send(querriedSoftware);
     } catch {
         res.status(404)
-        res.send({ error: "No such software! More information: https://wallen.co/static/api.html" })
+        res.send({ error: "No such software! More information: https://wallen.co/api" })
     }
 
 });
@@ -124,7 +124,7 @@ app.get('/api/:name/version', (req, res) => {
         return res.send(querriedSoftware.releaseVersion);
     } catch {
         res.status(404)
-        res.send({ error: "No such software! More information: https://wallen.co/static/api.html" })
+        res.send({ error: "No such software! More information: https://wallen.co/api" })
     }
 
 });
