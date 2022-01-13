@@ -128,3 +128,8 @@ app.get('/api/:name/version', (req, res) => {
     }
 
 });
+
+app.get('/ip', (req, res) => {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    return res.send(ip);
+});
