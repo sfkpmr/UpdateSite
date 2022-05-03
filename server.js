@@ -129,6 +129,23 @@ app.get('/api/:name/version', (req, res) => {
 
 });
 
+
+app.use(express.static(path.join(__dirname, 'pages')));
+// Handle HTTP 404
+app.use(function (req, res) {
+    const date = new Date();
+    console.log(date.toLocaleDateString(), date.toLocaleTimeString() + " Bad URL: " + req.path);
+    res.status(404).render('pages/404');
+});
+
+// Handle HTTP 500
+app.use(function (error, req, res, next) {
+    const date = new Date();
+    console.log(date.toLocaleDateString(), date.toLocaleTimeString() + " " + error + " " + req.path);
+    res.status(500).render('pages/500');
+});
+
+
 app.get('/ip', (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     return res.send(ip);
