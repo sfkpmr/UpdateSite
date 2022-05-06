@@ -21,7 +21,7 @@ app.use(express.static('software'));
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 // Port website will run on
-app.listen(8080);
+app.listen(8080, '0.0.0.0');
 
 console.log("Server listening on 8080")
 
