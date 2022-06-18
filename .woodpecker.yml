@@ -1,10 +1,7 @@
 pipeline:
   build:
     image: node:14-alpine
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - imageName=updatesite
-      - containerName=updateSite
-      - docker system prune -af
-      - docker build -t $imageName .
-      - docker stop $containerName || true && docker rm -f $containerName || true
-      - cd /docker && docker-compose up -d
+      - cd deploy && /bin/bash build.sh
