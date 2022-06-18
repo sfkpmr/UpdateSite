@@ -1,9 +1,9 @@
 pipeline:
   build:
-  commands:
-    - imageName=updatesite
-    - containerName=updateSite
-    - docker system prune -af
-    - docker build -t $imageName .
-    - docker stop $containerName || true && docker rm -f $containerName || true
-    - cd /docker && docker-compose up -d
+    commands:
+      - imageName=updatesite
+      - containerName=updateSite
+      - docker system prune -af
+      - docker build -t $imageName .
+      - docker stop $containerName || true && docker rm -f $containerName || true
+      - cd /docker && docker-compose up -d
