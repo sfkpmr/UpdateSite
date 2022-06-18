@@ -1,7 +1,13 @@
 pipeline:
   build:
     image: node:14-alpine
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - cd /var/lib/woodpecker/deploy && /bin/bash build.sh
+      - WORKDIR /usr/src/app
+      - COPY package*.json ./
+      - RUN npm ci --only=production
+      - COPY . .
+      - ENV TZ="Europe/Stockholm"
+      - ENV NODE_ENV="production"
+      - EXPOSE 8080
+      - USER nobody
+      - CMD [ "node", "server.js" ]
