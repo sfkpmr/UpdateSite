@@ -62,7 +62,7 @@
                                     <%= softwareArray[i].releaseDate %>
                                         <% } %>
                             </td>
-                            <td class="text"><a href="<%= softwareArray[i].name.replace(/ /g, '') %>.html"
+                            <td class="text"><a href="/api/<%= softwareArray[i].name.replace(/ /g, '') %>/version"
                                     title="Direct link to <%= softwareArray[i].name %> version">Direct Link</a>
                             </td>
                             <td class="text"><a href="<%= softwareArray[i].releaseURL %>"
