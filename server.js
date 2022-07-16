@@ -75,6 +75,22 @@ app.get('/mobile', async function (req, res) {
 
 });
 
+app.get('/about', async function (req, res) {
+    res.redirect("/")
+});
+
+app.get('/about/:name', async function (req, res) {
+    const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
+
+    try {
+        const querriedSoftware = software.find(e => e.name === req.params.name);
+
+        res.render('pages/about', { querriedSoftware });
+    } catch {
+        res.redirect("/")
+    }
+});
+
 app.get('/api', (req, res) => {
 
     return res.sendFile(path.join(__dirname, '/api.html'));

@@ -55,21 +55,21 @@
                                 <%= softwareArray[i].name %>
                             </td>
                             <td class="numeric">
-                                <%= softwareArray[i].releaseVersion %>
+                                <%= softwareArray[i].release_version %>
                             </td>
                             <td class="numeric">
-                                <% if (softwareArray[i].releaseDate!=="-" ) { %>
-                                    <%= softwareArray[i].releaseDate %>
+                                <% if (softwareArray[i].release_date!=="-" ) { %>
+                                    <%= softwareArray[i].release_date %>
                                         <% } %>
                             </td>
                             <td class="text"><a href="/api/<%= softwareArray[i].name %>/version"
                                     title="Direct link to <%= softwareArray[i].name %> version">Direct Link</a>
                             </td>
-                            <td class="text"><a href="<%= softwareArray[i].releaseURL %>"
+                            <td class="text"><a href="<%= softwareArray[i].release_url %>"
                                     title="Download link for <%= softwareArray[i].name %>">Download</a></td>
                             <td class="text">
-                                <% if (softwareArray[i].guideURL!=="guideurl" ) { %>
-                                    <a href="<%= softwareArray[i].guideURL %>"
+                                <% if (softwareArray[i].guide_url !=="-" ) { %>
+                                    <a href="<%= softwareArray[i].guide_url %>"
                                         title="Link to installation guide for <%= softwareArray[i].name %>">Install
                                         guide</a>
                                     <% } %>

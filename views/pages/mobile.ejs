@@ -29,13 +29,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="periodic-table">
         <% for (var i=0; i < softwareArray.length; i++ ) { %>
             <div class="periodic-element <%= softwareArray[i].box %>"><a
-                    href="about/<%- softwareArray[i].name.replace(/ /g, ``) %>.html">
+                    href="about/<%- softwareArray[i].name %>">
                     <div class="periodic-element-inner">
                         <div class="title">
                             <%= softwareArray[i].name %>
                         </div>
                         <div class="version">
-                            <%= softwareArray[i].releaseVersion %>
+                            <%= softwareArray[i].release_version %>
                         </div>
 
                     </div>
