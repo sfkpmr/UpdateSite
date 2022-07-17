@@ -75,6 +75,7 @@ app.get('/mobile', async function (req, res) {
 
 });
 
+//Behövs inte?
 app.get('/about', async function (req, res) {
     res.redirect("/")
 });

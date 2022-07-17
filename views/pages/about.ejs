@@ -19,9 +19,7 @@
 		<div class="periodic-element blue-box">
 			<a href="<%= querriedSoftware.download_url %>">
 				<div class="periodic-element-about">
-					<div class="title">
-						Download
-					</div>
+					<div class="title">Download</div>
 				</div>
 			</a>
 		</div>
@@ -29,19 +27,15 @@
 		<div class="periodic-element blue-box">
 			<a href="<%= querriedSoftware.release_url %>">
 				<div class="periodic-element-about">
-					<div class="title">
-						Release information
-					</div>
+					<div class="title">Release information</div>
 				</div>
 			</a>
 		</div>
-		<% if (querriedSoftware.guide_url != "guideurl"){ %>
+		<% if (querriedSoftware.guide_url != "-"){ %>
 		<div class="periodic-element blue-box">
 			<a href="<%= querriedSoftware.guide_url %>">
 				<div class="periodic-element-about">
-					<div class="title">
-						Installation guide
-					</div>
+					<div class="title">Installation guide</div>
 				</div>
 			</a>
 		</div>
