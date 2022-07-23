@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>About <%= querriedSoftware.name %></title>
+	<link rel="stylesheet" type="text/css" href="../static/mobile.css" />
+	<link rel="icon" href="../static/favicon.ico">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<h1><%= querriedSoftware.name %></h1>
+	<br>
+	<h5><%= querriedSoftware.release_version %></h5>
+
+	<div class="periodic-about">
+		<% if (querriedSoftware.download_url != "-"){ %>
+		<div class="periodic-element blue-box">
+			<a href="<%= querriedSoftware.download_url %>">
+				<div class="periodic-element-about">
+					<div class="title">Download</div>
+				</div>
+			</a>
+		</div>
+		<% } %>
+		<div class="periodic-element blue-box">
+			<a href="<%= querriedSoftware.release_url %>">
+				<div class="periodic-element-about">
+					<div class="title">Release information</div>
+				</div>
+			</a>
+		</div>
+		<% if (querriedSoftware.guide_url != "-"){ %>
+		<div class="periodic-element blue-box">
+			<a href="<%= querriedSoftware.guide_url %>">
+				<div class="periodic-element-about">
+					<div class="title">Installation guide</div>
+				</div>
+			</a>
+		</div>
+		<% } %>
+	</div>
+</body>
+
+</html>
