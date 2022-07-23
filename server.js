@@ -99,7 +99,7 @@ app.get('/api', (req, res) => {
 app.get('/api/all', (req, res) => {
     const software = JSON.parse(fs.readFileSync('json/software.json', 'utf8'));
 
-    const filteredSoftware = software.map(({ guideURL, description, box, ...keepAttrs }) => keepAttrs)
+    const filteredSoftware = software.map(({ guide_url, description, box, download_url, ...keepAttrs }) => keepAttrs)
 
     return res.send(filteredSoftware);
 });
@@ -110,10 +110,10 @@ app.get('/api/:name', (req, res) => {
     try {
         const querriedSoftware = software.find(e => e.name === req.params.name);
 
-        delete querriedSoftware.guideURL;
+        delete querriedSoftware.guide_url;
         delete querriedSoftware.description;
         delete querriedSoftware.box;
-        delete querriedSoftware.downloadURL;
+        delete querriedSoftware.download_url;
 
         return res.send(querriedSoftware);
     } catch {
@@ -128,14 +128,6 @@ app.get('/api/:name/version', (req, res) => {
 
     try {
         const querriedSoftware = software.find(e => e.name === req.params.name);
-
-        delete querriedSoftware.name;
-        delete querriedSoftware.releaseDate;
-        delete querriedSoftware.releaseURL;
-        delete querriedSoftware.guideURL;
-        delete querriedSoftware.description;
-        delete querriedSoftware.box;
-        delete querriedSoftware.downloadURL;
 
         return res.send(querriedSoftware.release_version);
     } catch {
