@@ -15,7 +15,6 @@ app.use(compression());
 app.disable('x-powered-by');
 // Render static files
 app.use('/static', express.static('static'))
-app.use('/about', express.static('about'))
 //app.use(express.static('static'));
 app.use(express.static('software'));
 // Set the view engine to ejs
