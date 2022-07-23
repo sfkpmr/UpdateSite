@@ -138,7 +138,7 @@ app.get('/api/:name/version', (req, res) => {
         delete querriedSoftware.box;
         delete querriedSoftware.downloadURL;
 
-        return res.send(querriedSoftware.releaseVersion);
+        return res.send(querriedSoftware.release_version);
     } catch {
         res.status(404)
         res.send({ error: "No such software! More information: https://wallen.co/api" })
